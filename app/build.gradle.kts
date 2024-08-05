@@ -53,9 +53,9 @@ dependencies {
     implementation ("com.google.android.material:material:1.10.0")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    implementation (files("libs/lib-exoplayer-debug.aar"))
-    implementation (files("libs/lib-effect-debug.aar"))
-    implementation (files("libs/lib-common-debug.aar"))
-    implementation (files("libs/lib-transformer-debug.aar"))
-    implementation (files("libs/lib-ui-debug.aar"))
+    implementation("androidx.media3:media3-transformer:1.4.0")
+    implementation("androidx.media3:media3-effect:1.4.0")
+    implementation("androidx.media3:media3-common:1.4.0")
+    implementation("androidx.media3:media3-ui:1.4.0")
+    implementation("androidx.media3:media3-exoplayer:1.4.0")
 }

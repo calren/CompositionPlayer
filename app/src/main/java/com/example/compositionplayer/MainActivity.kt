@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             videoEffects.add(RgbFilter.createGrayscaleFilter())
         }
         if (dizzyCropChip?.isChecked == true) {
-            videoEffects.add(MatrixTransformationFactory.createDizzyCropEffect())
+//            videoEffects.add(MatrixTransformationFactory.createDizzyCropEffect())
         }
         if (fastSpeedChip?.isChecked == true) {
             videoEffects.add(SpeedChangeEffect(5f))
