@@ -1,21 +1,18 @@
 package com.example.compositionplayer
 
+import android.animation.Animator.AnimatorListener
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.media3.common.Effect
 import androidx.media3.common.MediaItem
 import androidx.media3.common.util.Assertions
+import androidx.media3.common.util.Log
 import androidx.media3.common.util.UnstableApi
+import androidx.media3.effect.OverlayEffect
 import androidx.media3.effect.RgbFilter
 import androidx.media3.effect.SpeedChangeEffect
 import androidx.media3.transformer.Composition
@@ -24,6 +21,9 @@ import androidx.media3.transformer.EditedMediaItem
 import androidx.media3.transformer.EditedMediaItemSequence
 import androidx.media3.transformer.Effects
 import androidx.media3.ui.PlayerView
+import androidx.navigation.ui.AppBarConfiguration
+import com.airbnb.lottie.LottieCompositionFactory
+import com.airbnb.lottie.LottieDrawable
 import com.example.compositionplayer.databinding.ActivityMainBinding
 import com.google.android.material.chip.Chip
 
@@ -45,10 +45,31 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+//        val ld = LottieDrawable()
+//        LottieCompositionFactory.fromRawRes(this, R.raw.anim).addListener { result ->
+//            ld.setComposition(
+//                result
+//            )
+//        }
+//
+//        findViewById<ImageView>(R.id.image_view).setImageDrawable(ld)
+//        findViewById<ImageView>(R.id.image_view).setOnTouchListener {
+//            view, motionEvent ->
+//            ld.start()
+//            true
+//        }
+//        ld.addAnimatorUpdateListener { animation ->
+//            animation.
+//            Log.i("Caren", "animated value: " + animation.animatedValue)
+//        }
+//        ld.start()
+
         previewPlayerView = findViewById(R.id.composition_player_view)
         grayScaleChip = findViewById(R.id.grayscale_chip)
         dizzyCropChip = findViewById(R.id.dizzy_crop_chip)
         fastSpeedChip = findViewById(R.id.fast_speed_chip)
+
+        val mediaItem = MediaItem.fromUri("")
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -80,6 +101,7 @@ class MainActivity : AppCompatActivity() {
             val composition = Composition.Builder(editedMediaItemSequence).build()
 
             playCompositionPreview(composition)
+
         }
 
         dizzyCropChip?.setOnCheckedChangeListener { _, isChecked ->
@@ -112,6 +134,7 @@ class MainActivity : AppCompatActivity() {
             playCompositionPreview(composition)
         }
 
+
     }
 
     private fun getSelectedVideoEffectsList(): List<Effect> {
@@ -121,6 +144,7 @@ class MainActivity : AppCompatActivity() {
         }
         if (dizzyCropChip?.isChecked == true) {
 //            videoEffects.add(MatrixTransformationFactory.createDizzyCropEffect())
+            videoEffects.add(OverlayEffect(listOf(LottieOverlay(this))))
         }
         if (fastSpeedChip?.isChecked == true) {
             videoEffects.add(SpeedChangeEffect(5f))

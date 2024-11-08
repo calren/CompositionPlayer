@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.compositionplayer"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.compositionplayer"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -54,8 +54,11 @@ dependencies {
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
     implementation("androidx.media3:media3-transformer:1.4.0")
-    implementation("androidx.media3:media3-effect:1.4.0")
+    implementation("androidx.media3:media3-effect:1.5.0-beta01")
     implementation("androidx.media3:media3-common:1.4.0")
     implementation("androidx.media3:media3-ui:1.4.0")
     implementation("androidx.media3:media3-exoplayer:1.4.0")
+
+    implementation ("com.airbnb.android:lottie:6.6.0")
+
 }
