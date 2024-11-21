@@ -10,18 +10,26 @@
 
     <!--
     <ImageView
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:id="@+id/image_view"
-        android:layout_height="100dp" />
+        android:layout_height="wrap_content" />
         -->
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
     <androidx.media3.ui.PlayerView
         android:id="@+id/composition_player_view"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="300dp" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/configuration_group"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
@@ -36,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Dizzy crop effect" />
+            android:text="Lottie animation effect" />
         <com.google.android.material.chip.Chip
             android:id="@+id/grayscale_chip"
             android:layout_width="wrap_content"

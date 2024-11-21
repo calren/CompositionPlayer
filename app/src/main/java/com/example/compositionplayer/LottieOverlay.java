@@ -38,19 +38,27 @@ final class LottieOverlay extends CanvasOverlay {
     private Runnable runnable;
     private int width;
     private int height;
-    private final Paint paint;
+    private  Paint paint;
     private boolean started;
-    private final Handler handler;
+    private  Handler handler;
 
     LottieDrawable ld;
 
     public LottieOverlay(Context context) {
         super(true);
         ld = new LottieDrawable();
-        LottieCompositionFactory.fromRawRes(context, R.raw.anim).addListener(result -> ld.setComposition(result));
-        paint = new Paint();
-        paint.setAntiAlias(true);
-        handler = new Handler(Util.getCurrentOrMainLooper());
+        try {
+            Log.i("Caren", "Loading lottie overlay");
+            ld.setImagesAssetsFolder("images2/");
+            LottieCompositionFactory.fromRawRes(context, R.raw.anim).addListener(result -> ld.setComposition(result));
+            paint = new Paint();
+            paint.setAntiAlias(true);
+            handler = new Handler(Util.getCurrentOrMainLooper());
+            Log.i("Caren", "Finished loading lottie overlay");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -63,11 +71,9 @@ final class LottieOverlay extends CanvasOverlay {
     @Override
     public synchronized void onDraw(Canvas canvas, long presentationTimeUs) {
 //        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-
         ld.addAnimatorUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-                Log.i("Caren", "animator update");
                 ld.draw(canvas);
             }
         });

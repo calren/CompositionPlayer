@@ -1,6 +1,7 @@
 package com.example.compositionplayer
 
 import android.animation.Animator.AnimatorListener
+import android.media.Image
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -22,6 +23,7 @@ import androidx.media3.transformer.EditedMediaItemSequence
 import androidx.media3.transformer.Effects
 import androidx.media3.ui.PlayerView
 import androidx.navigation.ui.AppBarConfiguration
+import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
 import com.example.compositionplayer.databinding.ActivityMainBinding
@@ -46,22 +48,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 //        val ld = LottieDrawable()
-//        LottieCompositionFactory.fromRawRes(this, R.raw.anim).addListener { result ->
+//        ld.setImagesAssetsFolder("images/")
+//        LottieCompositionFactory.fromRawRes(this, R.raw.smiles_w_name).addListener { result ->
 //            ld.setComposition(
 //                result
 //            )
 //        }
 //
 //        findViewById<ImageView>(R.id.image_view).setImageDrawable(ld)
-//        findViewById<ImageView>(R.id.image_view).setOnTouchListener {
-//            view, motionEvent ->
-//            ld.start()
-//            true
-//        }
-//        ld.addAnimatorUpdateListener { animation ->
-//            animation.
-//            Log.i("Caren", "animated value: " + animation.animatedValue)
-//        }
 //        ld.start()
 
         previewPlayerView = findViewById(R.id.composition_player_view)
@@ -80,11 +74,11 @@ class MainActivity : AppCompatActivity() {
         prepareCompositionPlayer()
 
         val startingComposition =
-            createCompositionFromMedia("https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4")
+            createCompositionFromMedia("https://videocdn.cdnpk.net/videos/1b54e0c4-3a03-530f-b1a3-1c94d5c19f2c/horizontal/previews/clear/small.mp4?token=exp=1732217229~hmac=b72e4cc4a38aa7ebc3bd9b006ecc1cf1275aa0f90fb50f3ad4a699156bd6c830")
         playCompositionPreview(startingComposition)
 
         val originalMediaItem = MediaItem.Builder()
-            .setUri("https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4")
+            .setUri("https://videocdn.cdnpk.net/videos/1b54e0c4-3a03-530f-b1a3-1c94d5c19f2c/horizontal/previews/clear/small.mp4?token=exp=1732217229~hmac=b72e4cc4a38aa7ebc3bd9b006ecc1cf1275aa0f90fb50f3ad4a699156bd6c830")
             .build()
 
         grayScaleChip?.setOnCheckedChangeListener { _, isChecked ->
