@@ -47,16 +47,20 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-//        val ld = LottieDrawable()
-//        ld.setImagesAssetsFolder("images/")
-//        LottieCompositionFactory.fromRawRes(this, R.raw.smiles_w_name).addListener { result ->
-//            ld.setComposition(
-//                result
-//            )
-//        }
-//
-//        findViewById<ImageView>(R.id.image_view).setImageDrawable(ld)
-//        ld.start()
+        val ld = LottieDrawable()
+        ld.setImagesAssetsFolder("images/")
+        LottieCompositionFactory.fromRawRes(this, R.raw.smiles_w_name).addListener { result ->
+            ld.setComposition(
+                result
+            )
+        }
+
+        findViewById<ImageView>(R.id.image_view).setImageDrawable(ld)
+        ld.start()
+
+        findViewById<ImageView>(R.id.image_view).setOnClickListener {
+            ld.start()
+        }
 
         previewPlayerView = findViewById(R.id.composition_player_view)
         grayScaleChip = findViewById(R.id.grayscale_chip)
